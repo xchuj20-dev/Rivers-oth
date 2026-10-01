@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RIVERS_- OTH | Musique du Katanga & RDC</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Barre de Navigation -->
+    <header class="app-header">
+        <div class="logo">RIVERS_- OTH</div>
+        <nav class="nav-links">
+            <button class="nav-btn active" onclick="switchSection('catalogue')">Accueil</button>
+            <button class="nav-btn" onclick="switchSection('upload')">Espace Artiste</button>
+            <button class="nav-btn" onclick="switchSection('aide')">Support / IA</button>
+        </nav>
+        <div class="user-badge" id="role-badge">Mode : Fan</div>
+    </header>
+
+    <main class="main-container">
+
+        <!-- SECTION 1 : CATALOGUE DE MUSIQUE -->
+        <section id="section-catalogue" class="app-section active">
+            <div class="hero-banner">
+                <h1>Plateforme Musicale RIVERS_- OTH</h1>
+                <p>Écoutez les meilleures productions de Lubumbashi, Likasi, Kolwezi et Kinshasa.</p>
+            </div>
+
+            <div class="search-container">
+                <input type="text" id="search-input" placeholder="Rechercher une chanson, un artiste, un genre..." oninput="filtrerCatalogue()">
+            </div>
+
+            <h2>Dernières Nouveautés</h2>
+            <div id="music-grid" class="music-grid">
+                <p class="loading-text">Chargement des chansons en cours...</p>
+            </div>
+        </section>
+
+        <!-- SECTION 2 : PUBLICATION ARTISTE -->
+        <section id="section-upload" class="app-section">
+            <div class="card-form">
+                <h2>Publier un Morceau sur RIVERS_- OTH</h2>
+                
+                <div class="payment-alert">
+                    <strong>Instructions de Paiement Mobile Money :</strong><br>
+                    Le coût de publication est de <strong>1 000 FC / morceau</strong>.<br>
+                    Effectuez le transfert vers le numéro officiel : <strong>0982956876</strong> (M-Pesa / Orange Money / Airtel).
+                </div>
+
+                <form id="upload-form" onsubmit="soumettreMorceau(event)">
+                    <div class="form-group">
+                        <label>Nom d'artiste ou Groupe :</label>
+                        <input type="text" id="artist-name" placeholder="Ex: Young Katanga" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Titre de la chanson :</label>
+                        <input type="text" id="song-title" placeholder="Ex: Mwasi Kitoko" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Genre musical :</label>
+                        <select id="song-genre" required>
+                            <option value="Afrobeat">Afrobeat</option>
+                            <option value="Rumba">Rumba</option>
+                            <option value="Trap / Rap">Trap / Rap</option>
+                            <option value="Gospel">Gospel</option>
+                            <option value="Amapiano">Amapiano</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Adresse E-mail (Obligatoire) :</label>
+                        <input type="email" id="artist-email" placeholder="votre.email@gmail.com" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Numéro de téléphone (Paiement 1 000 FC) :</label>
+                        <input type="tel" id="artist-phone" placeholder="Ex: 0982956876" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label>Fichier MP3 (Max 15 Mo) :</label>
+                        <input type="file" id="song-file" accept="audio/mp3" required>
+                    </div>
+
+                    <button type="submit" class="btn-submit" id="btn-submit-form">
+                        Payer 1 000 FC & Envoyer le morceau
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- SECTION 3 : SUPPORT & ASSISTANT IA GEMINI -->
+        <section id="section-aide" class="app-section">
+            <div class="card-form">
+                <h2>Assistant Virtuel & Assistance</h2>
+                <p>Besoin d'aide pour publier un morceau ou effectuer votre paiement ? Posez vos questions ci-dessous.</p>
+
+                <div class="chat-window" id="chat-window">
+                    <div class="chat-msg bot">Bonjour ! Je suis l'assistant officiel de RIVERS_- OTH. Comment puis-je vous aider ?</div>
+                </div>
+
+                <div class="chat-input-box">
+                    <input type="text" id="chat-input" placeholder="Écrivez votre question ici...">
+                    <button onclick="envoyerMessageChat()">Envoyer</button>
+                </div>
+
+                <hr style="margin: 25px 0; border: 0; border-top: 1px solid #333;">
+
+                <a href="https://wa.me/243982956876?text=Bonjour,%20j'ai%20une%20question%20sur%20RIVERS_- OTH" target="_blank" class="whatsapp-link">
+                    Contacter directement le support sur WhatsApp
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- LECTEUR AUDIO SOUNDCLOUD STYLE EN BAS -->
+    <div class="player-bar">
+        <div class="player-info">
+            <span id="player-song-title">Sélectionnez un morceau</span>
+            <small id="player-artist-name">RIVERS_- OTH Player</small>
+        </div>
+        <audio id="main-audio-player" controls></audio>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
